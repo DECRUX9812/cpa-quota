@@ -1,9 +1,6 @@
-# CPA Quota — AI Subscriptions Hub for Hermes
+# CPA Quota — Hermes quota dashboard
 
-A zero-config plugin for [Hermes Agent](https://hermes-agent.nousresearch.com) that turns your
-[CLIProxyAPI](https://github.com/router-for-me/CLIProxyAPI) proxy into a **live subscription dashboard**:
-per-window quota remaining + reset countdowns, OpenCode Go usage, and one-click OAuth connect for
-every provider the proxy supports — all from the dashboard tab or the desktop pane.
+A Hermes Desktop plugin backed by [CLIProxyAPI](https://github.com/router-for-me/CLIProxyAPI). It shows provider quota, reset times, OpenCode Go usage, and connection controls from the dashboard tab or desktop pane.
 
 ![Main dashboard](docs/screenshots/dashboard-main.png)
 
