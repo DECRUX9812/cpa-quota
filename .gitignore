@@ -1,0 +1,13 @@
+# local runtime state — never commit
+config.json
+history.json
+
+# secrets
+.env
+*.env
+
+# tooling
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store

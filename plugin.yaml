@@ -1,0 +1,4 @@
+name: cpa-quota
+version: "1.0.0"
+description: "Live CLIProxyAPI / Antigravity quota widget: remaining fraction + reset countdown per model, tier and credits."
+author: "Hermes Agent + Ritesh Patel"

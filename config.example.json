@@ -1,0 +1,14 @@
+{
+  "_comment": "Optional overrides for the CPA Quota widget. Copy this file to ~/.hermes/plugins/cpa-quota/config.json and edit. All keys are optional — delete the file to use defaults. See README.md.",
+  "auth_dir": "~/.cli-proxy-api",
+  "hosts": [
+    "daily-cloudcode-pa.googleapis.com",
+    "cloudcode-pa.googleapis.com"
+  ],
+  "load_hosts": [
+    "cloudcode-pa.googleapis.com",
+    "daily-cloudcode-pa.googleapis.com"
+  ],
+  "refresh_interval_seconds": 60,
+  "low_threshold": 0.1
+}

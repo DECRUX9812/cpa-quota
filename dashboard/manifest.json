@@ -1,0 +1,14 @@
+{
+  "name": "cpa-quota",
+  "label": "AI Subscriptions",
+  "description": "Subscription hub: Antigravity + OpenCode Go + Claude/Codex/Kimi/Grok/Vertex connectors with live quota.",
+  "icon": "Gauge",
+  "version": "4.0.0",
+  "api": "plugin_api.py",
+  "entry": "dist/index.js",
+  "tab": {
+    "path": "/cpa-quota",
+    "position": "end"
+  },
+  "slots": ["header-right"]
+}
