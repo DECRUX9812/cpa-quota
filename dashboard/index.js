@@ -52,7 +52,7 @@
 
   // --- helpers -------------------------------------------------------------
   function pct(f) {
-    if (f == null || isNaN(f)) return '—'
+    if (f == null || isNaN(f)) return '–'
     return Math.round(f * 100) + '%'
   }
 
@@ -393,8 +393,8 @@
         className: cn('flex h-full items-center gap-1 px-2 font-mono text-xs', 'text-text-tertiary hover:text-text-primary'),
         style: labelColor ? { color: labelColor, textShadow: '0 0 12px ' + labelColor + '66' } : null,
         title: target
-          ? target.display_name + ': ' + pct(frac) + ' left, resets in ' + countdown(resetIn) + ' — click to refresh'
-          : 'CPA Quota — click to refresh',
+          ? target.display_name + ': ' + pct(frac) + ' left, resets in ' + countdown(resetIn) + ': click to refresh'
+          : 'CPA Quota: click to refresh',
         onClick: q.reload,
         type: 'button'
       },
@@ -494,7 +494,7 @@
       { className: 'rounded-md border p-3 text-xs text-text-tertiary' },
       p.connected
         ? React.createElement('span', { className: 'break-all' }, p.detail ? 'auth file: ' + p.detail : 'connected')
-        : '○ not connected — press Connect to set up this subscription'
+        : '○ not connected: press Connect to set up this subscription'
     )
   }
 
@@ -620,7 +620,7 @@
         React.createElement(
           'div',
           { className: 'shrink-0 font-mono text-xs', style: { color: used == null ? undefined : tone.a } },
-          used != null ? 'used ' + used + '% · left ' + left + '%' : '—'
+          used != null ? 'used ' + used + '% · left ' + left + '%' : '–'
         )
       ),
       used != null
@@ -784,7 +784,7 @@
       if (statusError) {
         pollFails.current += 1
         if (pollFails.current >= 4) {
-          err[1]('status polling failed — backend unreachable')
+          err[1]('status polling failed: backend unreachable')
           done[1]('err')
         }
       } else {
@@ -950,7 +950,7 @@
             className: 'overflow-y-auto whitespace-pre-wrap break-all rounded-md border bg-background p-2 font-mono text-xs text-text-secondary',
             style: { maxHeight: 120 }
           },
-          output || '—'
+          output || '–'
         ),
         done[0] === 'ok'
           ? React.createElement('div', { className: 'text-xs text-text-primary' }, '✓ connected: ' + newFile[0])
@@ -1223,7 +1223,7 @@
         ? React.createElement(
             'div',
             { className: 'rounded-md border p-3 text-sm text-text-secondary' },
-            '⚠ ' + q.error + ' — is cpa-quota enabled in plugins.enabled?'
+            '⚠ ' + q.error + ': is cpa-quota enabled in plugins.enabled?'
           )
         : null,
       !data && !q.error

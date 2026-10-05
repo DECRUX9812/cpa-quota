@@ -46,7 +46,7 @@ function isSafeUrl(u) {
 
 // --- formatting helpers -----------------------------------------------------
 function pct(f) {
-  if (f == null) return '—'
+  if (f == null) return '–'
   return Math.round(f * 100) + '%'
 }
 
@@ -226,7 +226,7 @@ function QuotaChip() {
           ? '◇ quota'
           : `◇ ${pct(frac)} · ${countdown(live)}`
       return jsx(Tip, {
-        label: 'CPA Quota — lowest window left · click to refresh',
+        label: 'CPA Quota: lowest window left · click to refresh',
         children: jsx('button', {
           className: cn(
             'inline-flex h-full items-center gap-1 px-1.5 font-mono text-[0.6875rem] transition-colors',
@@ -332,7 +332,7 @@ function OcRow({ label, d, nowMs }) {
           jsx('span', {
             className: 'ml-auto shrink-0 font-mono text-(--ui-text-secondary)',
             style: usedNum != null ? { color: tone.a } : undefined,
-            children: used || '—'
+            children: used || '–'
           }),
           reset != null &&
             jsx('span', { className: 'shrink-0 font-mono text-[10px] text-(--ui-text-tertiary)', children: '⏱ ' + countdown(reset) })
@@ -445,7 +445,7 @@ function QuotaPane() {
         // ~8s of persistent failure — stop polling and surface an error
         setConnecting(c =>
           c && c.state === 'url'
-            ? { ...c, state: 'error', error: 'status polling failed — backend unreachable' }
+            ? { ...c, state: 'error', error: 'status polling failed: backend unreachable' }
             : c
         )
       }
@@ -571,7 +571,7 @@ function QuotaPane() {
         ]
       }),
       isError &&
-        jsx('div', { className: 'shrink-0 text-xs text-(--ui-accent)', children: 'backend unreachable — is cpa-quota enabled in plugins.enabled?' }),
+        jsx('div', { className: 'shrink-0 text-xs text-(--ui-accent)', children: 'backend unreachable: is cpa-quota enabled in plugins.enabled?' }),
       data && data.error && data.ok !== true &&
         jsx('div', { className: 'shrink-0 text-xs text-(--ui-accent)', children: '⚠ ' + data.error }),
       data && data.error && data.ok === true &&
@@ -580,7 +580,7 @@ function QuotaPane() {
         jsx('div', { className: 'shrink-0 text-xs text-(--ui-text-quaternary)', children: 'loading quota…' }),
       jsx(Now, {
         render: nowMs => {
-          const antigravityMain = lowest ? pct(lowest.remaining) : '—'
+          const antigravityMain = lowest ? pct(lowest.remaining) : '–'
           const antigravitySub = lowest
             ? countdown(liveReset(lowest.reset_in_seconds, nowMs, data && data.ts))
             : ''
@@ -589,7 +589,7 @@ function QuotaPane() {
               ? rolling.remaining_fraction
               : rolling.percent != null ? (100 - rolling.percent) / 100 : null
             : null
-          const ocMain = ocFrac != null ? pct(ocFrac) : '—'
+          const ocMain = ocFrac != null ? pct(ocFrac) : '–'
           const ocSub = rolling ? countdown(secsUntil(rolling.resetsAt, nowMs)) : ''
 
           return jsxs('div', {
@@ -663,7 +663,7 @@ function QuotaPane() {
                             className: 'flex flex-col gap-1 rounded-md border border-(--ui-accent) px-2.5 py-1.5',
                             style: { borderColor: brandColor(connecting.provider) },
                             children: [
-                              jsx('div', { className: 'text-[10px] text-(--ui-text-quaternary)', children: cpLabel + ' — path to credentials file:' }),
+                              jsx('div', { className: 'text-[10px] text-(--ui-text-quaternary)', children: cpLabel + ': path to credentials file:' }),
                               jsxs('div', {
                                 className: 'flex items-center gap-1',
                                 children: [
@@ -707,7 +707,7 @@ function QuotaPane() {
                                 className: 'flex flex-col gap-1 rounded-md border border-(--ui-accent) px-2.5 py-1.5',
                                 style: { borderColor: brandColor(connecting.provider) },
                                 children: [
-                                  jsx('div', { className: 'text-[10px] text-(--ui-text-quaternary)', children: 'Open in your browser — this pane polls for the callback:' }),
+                                  jsx('div', { className: 'text-[10px] text-(--ui-text-quaternary)', children: 'Open in your browser: this pane polls for the callback:' }),
                                   safeConnectUrl &&
                                     jsx('a', {
                                       href: safeConnectUrl,
@@ -719,7 +719,7 @@ function QuotaPane() {
                                     }),
                                   unsafeUrl &&
                                     jsx('span', {
-                                      title: 'auth_url rejected — not http(s)',
+                                      title: 'auth_url rejected: not http(s)',
                                       className: 'truncate text-[11px] text-(--ui-text-quaternary)',
                                       children: unsafeUrl
                                     }),
