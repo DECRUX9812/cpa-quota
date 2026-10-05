@@ -1,4 +1,4 @@
-# CPA Quota — Hermes quota dashboard
+# CPA Quota: Hermes quota dashboard
 
 A Hermes Desktop plugin backed by [CLIProxyAPI](https://github.com/router-for-me/CLIProxyAPI). It shows provider quota, reset times, OpenCode Go usage, and connection controls from the dashboard tab or desktop pane.
 
@@ -6,12 +6,12 @@ A Hermes Desktop plugin backed by [CLIProxyAPI](https://github.com/router-for-me
 
 ## Features
 
-- **Live quota** — Google Antigravity per-window buckets (Gemini models share one window, Claude & GPT another), remaining %, reset countdown ticking every second, model list per bucket, tier + credits.
-- **OpenCode Go usage** — rolling / weekly / monthly percent used with reset times.
-- **One-click connect** — Antigravity, Claude, Codex, Kimi, Grok (xAI), Vertex (file import). Click **Connect**, the plugin runs the proxy's real login flow, shows you the OAuth URL + live output, and detects the new auth file on success.
-- **Statusbar chip** — lowest window % + countdown right in the dashboard header (⚠ when below your threshold).
-- **Settings** — refresh interval, alert threshold, hosts, auth dir — from a ⚙ popover, persisted to `config.json`.
-- **History** — 7-day quota samples with resampled charts data via `GET /history`.
+- **Live quota**: Google Antigravity per-window buckets (Gemini models share one window, Claude & GPT another), remaining %, reset countdown ticking every second, model list per bucket, tier + credits.
+- **OpenCode Go usage**: rolling / weekly / monthly percent used with reset times.
+- **One-click connect**: Antigravity, Claude, Codex, Kimi, Grok (xAI), Vertex (file import). Click **Connect**, the plugin runs the proxy's real login flow, shows you the OAuth URL + live output, and detects the new auth file on success.
+- **Statusbar chip**: lowest window % + countdown right in the dashboard header (warns when below your threshold).
+- **Settings**: refresh interval, alert threshold, hosts, auth dir, from the settings popover, persisted to `config.json`.
+- **History**: 7-day quota samples with resampled chart data via `GET /history`.
 
 ![Connect modal](docs/screenshots/dashboard-connect.png)
 
@@ -20,7 +20,7 @@ A Hermes Desktop plugin backed by [CLIProxyAPI](https://github.com/router-for-me
 ## Requirements
 
 - **Hermes Agent** (dashboard or desktop app) with plugins enabled
-- **CLIProxyAPI** (`cli-proxy-api`) running on `127.0.0.1:8317` — [get it here](https://github.com/router-for-me/CLIProxyAPI)
+- **CLIProxyAPI** (`cli-proxy-api`) running on `127.0.0.1:8317`, [get it here](https://github.com/router-for-me/CLIProxyAPI)
 - At least one logged-in subscription in the proxy's auth dir (`~/.cli-proxy-api/` by default)
 
 ## Install
@@ -53,7 +53,7 @@ hermes plugins enable cpa-quota
 | `desktop/plugin.js` | Electron desktop pane + statusbar chip with the same data. |
 | `plugin.yaml` / `__init__.py` | Native registry entry so `hermes plugins enable cpa-quota` works. |
 
-The plugin **never asks for your tokens** — it reads the auth files the proxy already maintains in
+The plugin **never asks for your tokens**: it reads the auth files the proxy already maintains in
 `~/.cli-proxy-api/` (or your configured `auth_dir`) and refreshes them in-process.
 
 ## Providers
@@ -93,17 +93,17 @@ All keys are optional. Either edit `~/.hermes/plugins/cpa-quota/config.json` (cr
 | `selected_auth_file` | newest | Which `antigravity-*.json` to use |
 | `proxy_bin` | `cli-proxy-api` | Path to the proxy binary (`CPA_QUOTA_PROXY_BIN`) |
 | `proxy_config` | `~/.local/share/cliproxyapi/config.yaml` | Proxy config for login subprocesses (`CPA_QUOTA_PROXY_CONFIG`) |
-| `token` | — | Manual OAuth access token override (`CPA_QUOTA_TOKEN`) |
+| `token` | (none) | Manual OAuth access token override (`CPA_QUOTA_TOKEN`) |
 | `models` / `primary_model` | all / first | Model allowlist + chip target |
 
 ## API (for other plugins / scripts)
 
 All under `/api/plugins/cpa-quota/`:
 
-- `GET /quota` — buckets, models, tier, account, alerts, opencode usage, config
-- `GET /providers` — provider list with connected status
-- `POST /connect` — `{provider}` or `{provider:'vertex', file:'/abs/path.json'}`
-- `GET /connect/status` · `POST /connect/cancel` — login progress / cancel
+- `GET /quota`: buckets, models, tier, account, alerts, opencode usage, config
+- `GET /providers`: provider list with connected status
+- `POST /connect`: `{provider}` or `{provider:'vertex', file:'/abs/path.json'}`
+- `GET /connect/status` and `POST /connect/cancel`: login progress / cancel
 - `GET /config` · `PUT /config` · `GET /accounts` · `GET /history` · `GET /health`
 
 ## Troubleshooting
@@ -112,7 +112,7 @@ All under `/api/plugins/cpa-quota/`:
 |---|---|
 | "no quota data" | Check `auth_dir` contains an `antigravity-*.json` with a valid OAuth refresh token |
 | Quota fetch slow / 429s | The prod host can 429 when quota is tight; the plugin fails over to the daily host automatically |
-| Connect shows a URL for the wrong provider | Fixed in v4 — a stale login from another provider is auto-terminated; cancel any running flow and retry |
+| Connect shows a URL for the wrong provider | Fixed in v4: a stale login from another provider is auto-terminated; cancel any running flow and retry |
 | Dashboard shows old version | Hard-refresh (Ctrl/Cmd+Shift+R); backend changes need a dashboard restart |
 | Backend unreachable | Confirm `cpa-quota` is in `hermes plugins list` output |
 
